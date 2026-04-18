@@ -1,0 +1,12 @@
+# The domain clients use to connect to this VPS.
+PUBLIC_DOMAIN=
+
+# Reality camouflage target (camouflage domain / dest / sni semantics must not change).
+CAMOUFLAGE_DOMAIN=www.apple.com
+REALITY_DEST=www.apple.com:443
+REALITY_SNI=www.apple.com
+
+# Main node listen port and display name.
+PORT=443
+NODE_NAME=VLESS-REALITY-IPv4
+

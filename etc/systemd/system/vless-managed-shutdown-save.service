@@ -1,0 +1,19 @@
+[Unit]
+Description=Save managed VLESS quota usage before shutdown/reboot
+DefaultDependencies=no
+Before=shutdown.target reboot.target halt.target poweroff.target kexec.target
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/mkdir -p /run/vless-reality
+ExecStart=/usr/local/bin/vrctl pq-save-state
+TimeoutStartSec=120
+
+[Install]
+WantedBy=shutdown.target
+WantedBy=halt.target
+WantedBy=reboot.target
+WantedBy=poweroff.target
+WantedBy=kexec.target
+

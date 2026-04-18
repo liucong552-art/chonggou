@@ -1,0 +1,16 @@
+[Unit]
+Description=Restore managed VLESS quota and IP-limit rules
+After=local-fs.target nftables.service systemd-tmpfiles-setup.service
+Wants=nftables.service
+Before=multi-user.target
+ConditionPathIsDirectory=/var/lib/vless-reality
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/mkdir -p /run/vless-reality
+ExecStartPre=/usr/bin/systemd-tmpfiles --create /etc/tmpfiles.d/vless-reality.conf
+ExecStart=/usr/local/bin/vrctl vless-restore-all
+
+[Install]
+WantedBy=multi-user.target
+

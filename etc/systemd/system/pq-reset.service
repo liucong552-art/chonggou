@@ -1,0 +1,8 @@
+[Unit]
+Description=Reset eligible managed quotas every 30 days
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/vrctl pq-reset-due
+

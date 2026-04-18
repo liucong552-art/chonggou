@@ -1,0 +1,18 @@
+[Unit]
+Description=Temporary VLESS %i
+After=network-online.target vless-managed-restore.service
+Wants=network-online.target
+ConditionPathExists=/usr/local/etc/xray/%i.json
+ConditionPathExists=/var/lib/vless-reality/temp/%i.env
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/usr/local/bin/vrctl vless-run-temp %i
+ExecStopPost=/usr/local/bin/vrctl vless-cleanup-one %i --from-stop-post
+Restart=no
+SuccessExitStatus=0 124 143
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+[Unit]
+Description=Persist managed port quota usage and rebuild counters
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/vrctl pq-save-state
+

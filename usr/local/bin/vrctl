@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+exec /usr/bin/python3 /usr/local/lib/vless-reality/vrctl.py "$@"
